@@ -63,8 +63,9 @@ trait HasLoggedValues
 
     public function logValue(string $key, $value, ?array $additionalAttributes = null)
     {
-        // Does an $loggableAttributes?
-        // -> Is $key in $loggableAttributes
+        if (!$this->isLoggableAttribute($key)) {
+            return false;
+        }
 
         // Is $key casted?
         // -> $value = casted $value
@@ -74,6 +75,15 @@ trait HasLoggedValues
             'value' => $value,
         ])->merge($additionalAttributes);
 
-        return $this->loggedValues()->create($attributes);
+        return $this->loggedValues()->create($attributes->toArray());
+    }
+
+    protected function isLoggableAttribute(string $key)
+    {
+        if (!property_exists($this, 'loggableAttributes') || empty($this->loggableAttributes)) {
+            return true;
+        }
+
+        return in_array($key, $this->loggableAttributes);
     }
 }
