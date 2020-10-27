@@ -50,7 +50,7 @@ trait HasLoggedValues
 
     public function getLatestValue(string $key, $before = null): ?LoggedValue
     {
-        if (!$values = $this->loggedValues->get($key)) {
+        if (!$values = $this->groupedValues->get($key)) {
             return null;
         }
 
