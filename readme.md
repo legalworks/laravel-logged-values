@@ -1,11 +1,10 @@
-# LaravelLoggedValues
+# legalworks/laravel-logged-values
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+Ever needed to store simple values easily, that could change over time or even in the future? When Event Sourcing is just a bit too much? This is for you... maybe.
 
 ## Installation
 
@@ -16,6 +15,37 @@ $ composer require legalworks/laravel-logged-values
 ```
 
 ## Usage
+
+### Add trait
+
+``` php
+use Legalworks\LoggedValues\HasLoggedValues;
+
+class SomeModel extends Model{
+    use HasLoggedValues;
+    ...
+}
+
+### Add any logged values
+
+$someModel->allLoggedValues()->create([
+    'key' => 'pages',
+    'value' => '500',
+    //'effective_at' => now(),
+]);
+
+```
+
+### Get logged values
+
+``` php
+$someModel->loggedValues; //all logged values
+$someModel->groupedValues; //all values grouped by key
+$someModel->pastValues;
+$someModel->futureValues;
+
+$someModel->getLatestValue('pages'); //only the latest value of the given key, neither past nor future values
+```
 
 ## Change log
 
@@ -33,7 +63,7 @@ Please see [contributing.md](contributing.md) for details and a todolist.
 
 ## Security
 
-If you discover any security related issues, please email dev@jayahr.de instead of using the issue tracker.
+If you discover any security related issues, please email author email instead of using the issue tracker.
 
 ## Credits
 
@@ -42,16 +72,12 @@ If you discover any security related issues, please email dev@jayahr.de instead 
 
 ## License
 
-MIT. Please see the [license file](license.md) for more information.
+license. Please see the [license file](license.md) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/legalworks/laravel-logged-values.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/legalworks/laravel-logged-values.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/legalworks/laravel-logged-values/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
 
 [link-packagist]: https://packagist.org/packages/legalworks/laravel-logged-values
 [link-downloads]: https://packagist.org/packages/legalworks/laravel-logged-values
-[link-travis]: https://travis-ci.org/legalworks/laravel-logged-values
-[link-styleci]: https://styleci.io/repos/12345678
 [link-author]: https://github.com/legalworks
 [link-contributors]: ../../contributors
