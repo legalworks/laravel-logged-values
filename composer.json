@@ -1,0 +1,41 @@
+{
+    "name": "legalworks/laravel-logged-values",
+    "description": "Ever needed to store simple values easily, that could change over time or even in the future? When Event Sourcing is just a bit too much?",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JayAhr",
+            "email": "dev@jayahr.de",
+            "homepage": "https://legalworks.dev"
+        }
+    ],
+    "homepage": "https://github.com/legalworks/laravel-logged-values",
+    "keywords": ["Laravel", "LoggedValues"],
+    "require": {
+        "illuminate/support": "~7|~8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~5|~6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Legalworks\\LoggedValues\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Legalworks\\LoggedValues\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Legalworks\\LoggedValues\\LoggedValuesServiceProvider"
+            ],
+            "aliases": {
+                "LoggedValues": "Legalworks\\LoggedValues\\Facades\\LoggedValues"
+            }
+        }
+    }
+}
