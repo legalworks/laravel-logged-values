@@ -25,9 +25,11 @@ class SomeModel extends Model{
     use HasLoggedValues;
     ...
 }
+```
 
 ### Add any logged values
 
+```
 $someModel->allLoggedValues()->create([
     'key' => 'pages',
     'value' => '500',
