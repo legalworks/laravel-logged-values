@@ -60,4 +60,20 @@ trait HasLoggedValues
             })
             ->first();
     }
+
+    public function logValue(string $key, $value, ?array $additionalAttributes = null)
+    {
+        // Does an $loggableAttributes?
+        // -> Is $key in $loggableAttributes
+
+        // Is $key casted?
+        // -> $value = casted $value
+
+        $attributes = collect([
+            'key' => $key,
+            'value' => $value,
+        ])->merge($additionalAttributes);
+
+        return $this->loggedValues()->create($attributes);
+    }
 }
