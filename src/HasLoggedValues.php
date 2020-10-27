@@ -37,7 +37,7 @@ trait HasLoggedValues
             ->groupBy('key');
     }
 
-    public function getHistoricValuesAttribute(): ?Collection
+    public function getPastValuesAttribute(): ?Collection
     {
         $time = now();
 
