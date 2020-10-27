@@ -30,10 +30,9 @@ class SomeModel extends Model{
 ### Add any logged values
 
 ```
-$someModel->allLoggedValues()->create([
-    'key' => 'pages',
-    'value' => '500',
-    //'effective_at' => now(),
+$someModel->logValue('pages', 500, [
+    'effective_at' => now(), //optional, defaults to now()
+    'description' => null, //optional
 ]);
 
 ```
@@ -46,7 +45,7 @@ $someModel->groupedValues; //all values grouped by key
 $someModel->pastValues;
 $someModel->futureValues;
 
-$someModel->getLatestValue('pages'); //only the latest value of the given key, neither past nor future values
+$someModel->getLatestValue('pages', '2020-10-27 12:00:00'); //get the latest value of the given key before given (optional) datetime
 ```
 
 ## Change log
