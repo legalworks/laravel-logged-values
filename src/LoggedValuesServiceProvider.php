@@ -56,7 +56,12 @@ class LoggedValuesServiceProvider extends ServiceProvider
      */
     protected function bootForConsole(): void
     {
-        // Publishing the configuration file.
+        if (!class_exists('CreateLoggedValuesTable')) {
+            $this->publishes([
+                __DIR__ . '/../database/migrations/2020_10_27_000000_create_logged_values_table' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_logged_values_table.php'),
+            ], 'migrations');
+        }
+
         $this->publishes([
             __DIR__ . '/../config/logged-values.php' => config_path('logged-values.php'),
         ], 'logged-values.config');
